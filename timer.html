@@ -10,15 +10,23 @@
 <body>
     <div id="timer-container">
         <h1 class="title">Pomodoro Timer</h1>
-        <div id="timer-info">
+        <br>
+        
+        <div id="timer">${formatTime(workTime)}</div>
+            <img id="tomato-img" src="tomato.png" alt="Tomato Image">
+        <div id="message"></div>
+        
+        <br>
+        
+        <div id="timer-info">  
             <p>Work Time: ${formatTime(workTime)}</p>
             <p>Break Time: ${formatTime(breakTime)}</p>
         </div>
-        <div id="timer">${formatTime(workTime)}</div>
-        <img id="tomato-img" src="tomato.png" alt="Tomato Image">
-        <div id="message"></div>
+    
     </div>
+    
     <img class="back-icon" src="back.png" alt="Back Icon" onclick="goBack()">
+    
     <!-- div for the sun/moon icon for light/dark mode -->
     <div id="sun" class="sun"></div>
 </body>
