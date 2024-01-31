@@ -3,21 +3,25 @@ let darkMode = false;
 let workTime, breakTime;
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Ongoing to check user clicks dark mode
     const sun = document.getElementById('sun');
     sun.addEventListener('click', toggleDarkMode);
 
-    // Check if we are on the settings or timer page
     if (document.getElementById('settings-container')) {
         // Page 1: Settings
-        document.getElementById('sun').addEventListener('click', () => {
-            toggleDarkMode();
-        });
+        document.getElementById('sun').style.backgroundImage = darkMode ? "url('moon.png')" : "url('sun.png')";
     } else if (document.getElementById('timer-container')) {
         // Page 2: Timer
         startPomodoro();
     }
 });
+
+function updateSliderText(type) {
+    const slider = type === 'work' ? document.getElementById('work-timer') : document.getElementById('break-timer');
+    const value = slider.value;
+    const textElement = type === 'work' ? document.getElementById('work-timer-value') : document.getElementById('break-timer-value');
+
+    textElement.textContent = type === 'work' ? `Work Time: ${value} minutes` : `Break Time: ${value} minutes`;
+}
 
 function toggleDarkMode() {
     const body = document.body;
