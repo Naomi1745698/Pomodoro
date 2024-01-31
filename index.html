@@ -11,17 +11,17 @@
     <div id="settings-container">
         <h1 class="title">Pomodoro Timer</h1>
         <label for="work-timer">Work Timer:</label>
-        <input type="range" id="work-timer" min="1" max="60" value="25">
+        <input type="range" id="work-timer" min="1" max="60" value="25" oninput="updateSliderText('work')">
         <p id="work-timer-value">Work Time: 25 minutes</p>
 
         <label for="break-timer">Break Timer:</label>
-        <input type="range" id="break-timer" min="1" max="30" value="5">
+        <input type="range" id="break-timer" min="1" max="30" value="5" oninput="updateSliderText('break')">
         <p id="break-timer-value">Break Time: 5 minutes</p>
 
         <button onclick="startPomodoro()">Start Pomodoro</button>
     </div>
 
     <!-- div for the sun/moon icon for light/dark mode -->
-    <div id="sun" class="sun"></div>
+    <div id="sun" class="sun" onclick="toggleDarkMode()"></div>
 </body>
 </html>
