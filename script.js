@@ -1,9 +1,9 @@
 let workTimer, breakTimer;
 let darkMode = false;
+let workTime, breakTime;
 
 // Ongoing to check user clicks dark mode
 document.addEventListener('DOMContentLoaded', function () {
-
     const sun = document.getElementById('sun');
     sun.addEventListener('click', toggleDarkMode);
 });
@@ -23,16 +23,23 @@ function toggleDarkMode() {
 }
 
 function startPomodoro() {
-    const workTime = document.getElementById('work-timer').value * 60;
-    const breakTime = document.getElementById('break-timer').value * 60;
+    workTime = document.getElementById('work-timer').value * 60;
+    breakTime = document.getElementById('break-timer').value * 60;
 
     document.body.innerHTML = `
         <div id="timer-container">
+            <h1 class="title">Pomodoro Timer</h1>
+            <div id="timer-info">
+                <p>Work Time: ${formatTime(workTime)}</p>
+                <p>Break Time: ${formatTime(breakTime)}</p>
+            </div>
             <div id="timer">${formatTime(workTime)}</div>
             <img id="tomato-img" src="tomato.png" alt="Tomato Image">
             <div id="message"></div>
         </div>
         <img class="back-icon" src="back.png" alt="Back Icon" onclick="goBack()">
+        <!-- div for the sun/moon icon for light/dark mode -->
+        <div id="sun" class="sun"></div>
     `;
 
     workTimer = setInterval(() => {
