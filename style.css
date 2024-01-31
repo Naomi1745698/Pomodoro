@@ -29,6 +29,10 @@ button {
     font-weight: bold;
 }
 
+#timer-info p {
+    font-size: 16px;
+}
+
 #tomato-img {
     max-width: 200px;
 }
@@ -46,4 +50,15 @@ button {
 body.dark-mode {
     background-color: #121212; /* dark background color */
     color: #ffffff; /* text color */
+}
+
+.sun {
+    width: 30px;
+    height: 30px;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background-image: url('sun.png');
+    background-size: cover;
+    cursor: pointer;
 }
