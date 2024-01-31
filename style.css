@@ -1,7 +1,7 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #fff;
-    color: #333;
+    background-color: #fff; /* Set your background color */
+    color: #333; /* Set your text color */
 }
 
 #settings-container {
@@ -9,11 +9,16 @@ body {
     margin-top: 50px;
 }
 
+input[type="range"] {
+    width: 90%; /* Make the sliders bigger */
+    margin: 0 auto;
+}
+
 button {
     padding: 10px 20px;
     margin-top: 20px;
-    background-color: #4CAF50;
-    color: #fff;
+    background-color: #4CAF50; /* Set your button color */
+    color: #fff; /* Set your button text color */
     cursor: pointer;
     border: none;
     border-radius: 5px;
