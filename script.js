@@ -2,14 +2,25 @@ let workTimer, breakTimer;
 let darkMode = false;
 let workTime, breakTime;
 
-// Ongoing to check user clicks dark mode
 document.addEventListener('DOMContentLoaded', function () {
+    // Ongoing to check user clicks dark mode
     const sun = document.getElementById('sun');
     sun.addEventListener('click', toggleDarkMode);
+
+    // Check if we are on the settings or timer page
+    if (document.getElementById('settings-container')) {
+        // Page 1: Settings
+        document.getElementById('sun').addEventListener('click', () => {
+            toggleDarkMode();
+        });
+    } else if (document.getElementById('timer-container')) {
+        // Page 2: Timer
+        startPomodoro();
+    }
 });
 
 function toggleDarkMode() {
-    const body = document.body; // Changes entire page
+    const body = document.body;
     const sun = document.getElementById('sun');
 
     darkMode = !darkMode;
