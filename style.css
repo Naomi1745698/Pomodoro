@@ -1,0 +1,49 @@
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: #fff; /* Set your background color */
+    color: #333; /* Set your text color */
+}
+
+#settings-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+button {
+    padding: 10px 20px;
+    margin-top: 20px;
+    background-color: #4CAF50; /* Set your button color */
+    color: #fff; /* Set your button text color */
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+}
+
+#timer-container {
+    text-align: center;
+    margin-top: 50px;
+}
+
+#timer, #message {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+#tomato-img {
+    max-width: 200px;
+}
+
+.back-icon {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    cursor: pointer;
+    width: 30px;
+    height: 30px;
+}
+
+/* Dark mode! */
+body.dark-mode {
+    background-color: #121212; /* dark background color */
+    color: #ffffff; /* text color */
+}
