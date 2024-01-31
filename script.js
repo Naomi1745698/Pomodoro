@@ -1,6 +1,7 @@
 let workTimer, breakTimer;
 let darkMode = false;
 let workTime, breakTime;
+let isWorkTime = true;
 
 document.addEventListener('DOMContentLoaded', function () {
     const sun = document.getElementById('sun');
@@ -41,44 +42,40 @@ function startPomodoro() {
     workTime = document.getElementById('work-timer').value * 60;
     breakTime = document.getElementById('break-timer').value * 60;
 
-    document.body.innerHTML = `
-        <div id="timer-container">
-            <h1 class="title">Pomodoro Timer</h1>
-            <div id="timer-info">
-                <p>Work Time: ${formatTime(workTime)}</p>
-                <p>Break Time: ${formatTime(breakTime)}</p>
-            </div>
-            <div id="timer">${formatTime(workTime)}</div>
-            <img id="tomato-img" src="tomato.png" alt="Tomato Image">
-            <div id="message"></div>
-        </div>
-        <img class="back-icon" src="back.png" alt="Back Icon" onclick="goBack()">
-        <!-- div for the sun/moon icon for light/dark mode -->
-        <div id="sun" class="sun"></div>
-    `;
+    const timerContainer = document.getElementById('timer-container');
 
-    workTimer = setInterval(() => {
-        workTime--;
-        document.getElementById('timer').textContent = formatTime(workTime);
+    function switchToBreak() {
+        timerContainer.style.backgroundColor = '#D1FFD1'; /* Set your soft pastel green color */
+        document.getElementById('message').textContent = 'Break Time!';
+        isWorkTime = false;
+        setTimeout(startPomodoro, 1000);
+    }
 
-        if (workTime === 0) {
-            clearInterval(workTimer);
-            document.body.style.backgroundColor = '#FFD1D1'; /* Set your break color */
-            document.getElementById('message').textContent = 'Break Time!';
-            setTimeout(startBreak, 1000);
-        }
-    }, 1000);
+    function switchToWork() {
+        timerContainer.style.backgroundColor = '#FFD1D1'; /* Set your soft pastel red color */
+        document.getElementById('message').textContent = 'Work Time!';
+        isWorkTime = true;
+        setTimeout(startPomodoro, 1000);
+    }
 
-    function startBreak() {
+    if (isWorkTime) {
+        workTimer = setInterval(() => {
+            workTime--;
+            document.getElementById('timer').textContent = formatTime(workTime);
+
+            if (workTime === 0) {
+                clearInterval(workTimer);
+                switchToBreak();
+            }
+        }, 1000);
+    } else {
         breakTimer = setInterval(() => {
             breakTime--;
             document.getElementById('timer').textContent = formatTime(breakTime);
 
             if (breakTime === 0) {
                 clearInterval(breakTimer);
-                document.body.style.backgroundColor = '#fff'; /* Set your original background color */
-                document.getElementById('message').textContent = '';
-                setTimeout(startPomodoro, 1000);
+                switchToWork();
             }
         }, 1000);
     }
