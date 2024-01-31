@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer - Timer</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+<body>
+    <div id="timer-container">
+        <h1 class="title">Pomodoro Timer</h1>
+        <div id="timer-info">
+            <p>Work Time: ${formatTime(workTime)}</p>
+            <p>Break Time: ${formatTime(breakTime)}</p>
+        </div>
+        <div id="timer">${formatTime(workTime)}</div>
+        <img id="tomato-img" src="tomato.png" alt="Tomato Image">
+        <div id="message"></div>
+    </div>
+    <img class="back-icon" src="back.png" alt="Back Icon" onclick="goBack()">
+    <!-- div for the sun/moon icon for light/dark mode -->
+    <div id="sun" class="sun"></div>
+</body>
+</html>
