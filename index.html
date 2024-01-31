@@ -1,29 +1,64 @@
+<!-- Page 1: Settings -->
 <!DOCTYPE html>
 <html lang="en">
+    
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pomodoro Timer</title>
-    
     <link rel="stylesheet" href="style.css">
     <script defer src="script.js"></script>
-   
 </head>
     
 <body>
     <div id="settings-container">
-        <label for="work-timer">Work Timer:</label>
         <h1 class="title">Pomodoro Timer</h1>
+        <label for="work-timer">Work Timer:</label>
         <input type="range" id="work-timer" min="1" max="60" value="25">
-        
+        <p id="work-timer-value">Work Time: 25 minutes</p>
+
         <label for="break-timer">Break Timer:</label>
         <input type="range" id="break-timer" min="1" max="30" value="5">
-        
+        <p id="break-timer-value">Break Time: 5 minutes</p>
+
         <button onclick="startPomodoro()">Start Pomodoro</button>
     </div>
 
     <!-- div for the sun/moon icon for light/dark mode -->
     <div id="sun" class="sun"></div>
+    
+</body>
+</html>
 
+
+
+<!-- Page 2: Pomodoro Timer -->
+<!-- Sorry, its a bit cursed having 2 pages on 1 html but it is what it is -->
+
+<!DOCTYPE html>
+<html lang="en">
+    
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Timer</title>
+    <link rel="stylesheet" href="style.css">
+    <script defer src="script.js"></script>
+</head>
+    
+<body>
+    <div id="timer-container">
+        <h1 class="title">Pomodoro Timer</h1>
+        <div id="timer-info"></div>
+        <div id="timer">${formatTime(workTime)}</div>
+        <img id="tomato-img" src="tomato.png" alt="Tomato Image">
+        <div id="message"></div>
+    </div>
+    
+    <img class="back-icon" src="back.png" alt="Back Icon" onclick="goBack()">
+    
+    <!-- div for the sun/moon icon for light/dark mode -->
+    <div id="sun" class="sun"></div>
+    
 </body>
 </html>
