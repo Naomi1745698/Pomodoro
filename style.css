@@ -10,7 +10,7 @@ body {
 }
 
 input[type="range"] {
-    width: 90%; /* Make the sliders bigger */
+    width: 300px;
     margin: 0 auto;
 }
 
