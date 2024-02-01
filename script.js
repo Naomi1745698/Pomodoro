@@ -11,9 +11,9 @@ document.addEventListener('DOMContentLoaded', function () {
         // Page 1: Settings
         updateSliderText('work');
         updateSliderText('break');
+        
     } else if (document.getElementById('timer-container')) {
         // Page 2: Timer
-        initializeTimers();
         startPomodoro();
     }
 });
@@ -39,6 +39,8 @@ function toggleDarkMode() {
 function startPomodoro() {
     workTime = document.getElementById('work-timer').value * 60;
     breakTime = document.getElementById('break-timer').value * 60;
+    
+    initializeTimers();
 
     const timerContainer = document.getElementById('timer-container');
     const timerDisplay = document.getElementById('timer');
@@ -132,10 +134,7 @@ function updateSliderText(type) {
 }
 
 
-function initializeTimers() {
-    workTime = document.getElementById('work-timer').value * 60;
-    breakTime = document.getElementById('break-timer').value * 60;
-    
+function initializeTimers() {    
     const timerDisplay = document.getElementById('timer');
     timerDisplay.textContent = formatTime(workTime);
     document.getElementById('work-time-display').textContent = formatTime(workTime);
