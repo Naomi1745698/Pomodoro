@@ -1,7 +1,7 @@
 body {
     font-family: 'Arial', sans-serif;
-    background-color: #fff; /* Set your background color */
-    color: #333; /* Set your text color */
+    background-color: #fff;
+    color: #333;
 }
 
 #settings-container {
@@ -17,8 +17,8 @@ input[type="range"] {
 button {
     padding: 10px 20px;
     margin-top: 20px;
-    background-color: #4CAF50; /* Set your button color */
-    color: #fff; /* Set your button text color */
+    background-color: #4CAF50;
+    color: #fff;
     cursor: pointer;
     border: none;
     border-radius: 5px;
