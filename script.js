@@ -79,6 +79,10 @@ function startPomodoro() {
 
     // Redirect to timer.html
     window.location.href = 'timer.html';
+
+    // Set display times dynamically
+    document.getElementById('work-time-display').textContent = formatTime(workTime);
+    document.getElementById('break-time-display').textContent = formatTime(breakTime);
 }
 
 function formatTime(seconds) {
