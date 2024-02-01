@@ -74,7 +74,8 @@ function startPomodoro() {
         }, 1000);
     }
 
-    switchToWork();
+    // Redirect to timer.html
+    window.location.href = 'timer.html';
 }
 
 function formatTime(seconds) {
@@ -86,5 +87,5 @@ function formatTime(seconds) {
 function goBack() {
     clearInterval(workTimer);
     clearInterval(breakTimer);
-    location.reload();
+    window.location.href = 'settings.html';
 }
