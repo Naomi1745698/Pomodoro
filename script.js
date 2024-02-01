@@ -20,7 +20,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
 function goPomo() {
     window.location.href = 'timer.html';
-    startPomodoro();
 }
 
 function toggleDarkMode() {
@@ -88,6 +87,23 @@ function startPomodoro() {
 
     switchToWork(); // Start with the initial work session
 }
+
+// Add this event listener to execute startPomodoro when the DOM is loaded
+document.addEventListener('DOMContentLoaded', function () {
+    const sun = document.getElementById('sun');
+    sun.addEventListener('click', toggleDarkMode);
+
+    if (document.getElementById('settings-container')) {
+        // Page 1: Settings
+        updateSliderText('work');
+        updateSliderText('break');
+    } else if (document.getElementById('timer-container')) {
+        // Page 2: Timer
+        initializeTimers();
+        startPomodoro();
+    }
+});
+
 
 function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
