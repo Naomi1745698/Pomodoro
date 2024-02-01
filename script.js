@@ -11,15 +11,16 @@ document.addEventListener('DOMContentLoaded', function () {
         // Page 1: Settings
         updateSliderText('work');
         updateSliderText('break');
-        
     } else if (document.getElementById('timer-container')) {
         // Page 2: Timer
+        initializeTimers();
         startPomodoro();
     }
 });
 
 function goPomo() {
     window.location.href = 'timer.html';
+    startPomodoro();
 }
 
 function toggleDarkMode() {
@@ -39,8 +40,6 @@ function toggleDarkMode() {
 function startPomodoro() {
     workTime = document.getElementById('work-timer').value * 60;
     breakTime = document.getElementById('break-timer').value * 60;
-    
-    initializeTimers();
 
     const timerContainer = document.getElementById('timer-container');
     const timerDisplay = document.getElementById('timer');
@@ -90,23 +89,6 @@ function startPomodoro() {
     switchToWork(); // Start with the initial work session
 }
 
-// Add this event listener to execute startPomodoro when the DOM is loaded
-document.addEventListener('DOMContentLoaded', function () {
-    const sun = document.getElementById('sun');
-    sun.addEventListener('click', toggleDarkMode);
-
-    if (document.getElementById('settings-container')) {
-        // Page 1: Settings
-        updateSliderText('work');
-        updateSliderText('break');
-    } else if (document.getElementById('timer-container')) {
-        // Page 2: Timer
-        initializeTimers();
-        startPomodoro();
-    }
-});
-
-
 function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
     const remainingSeconds = seconds % 60;
@@ -133,10 +115,15 @@ function updateSliderText(type) {
     }
 }
 
-
-function initializeTimers() {    
+function initializeTimers() {
     const timerDisplay = document.getElementById('timer');
     timerDisplay.textContent = formatTime(workTime);
     document.getElementById('work-time-display').textContent = formatTime(workTime);
     document.getElementById('break-time-display').textContent = formatTime(breakTime);
 }
+
+document.addEventListener('DOMContentLoaded', function () {
+    if (document.getElementById('timer-container')) {
+        initializeTimers();
+    }
+});
