@@ -18,6 +18,11 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+function goPomo() {
+    window.location.href = 'timer.html';
+    startPomodoro();
+}
+
 function toggleDarkMode() {
     const body = document.body;
     const sun = document.getElementById('sun');
