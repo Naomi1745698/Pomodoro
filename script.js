@@ -75,11 +75,10 @@ function startPomodoro() {
             switchToBreak();
         }
     }
+    
+    // Redirect to timer.html
+    window.location.href = 'timer.html';
 
-    // Create an anchor element and trigger click event
-    const anchor = document.createElement('a');
-    anchor.href = 'timer.html';
-    anchor.click();
 }
 
 
