@@ -39,13 +39,10 @@ function toggleDarkMode() {
 }
 
 function startPomodoro() {
-    const workTimeValue = document.getElementById('work-timer').value;
-    const breakTimeValue = document.getElementById('break-timer').value;
-    
-    workTime = workTimeValue * 60;
-    breakTime = breakTimeValue * 60;
-
     const timerContainer = document.getElementById('timer-container');
+    
+    // Redirect to timer.html
+    window.location.href = 'timer.html';
 
     function switchToBreak() {
         timerContainer.style.backgroundColor = '#D1FFD1'; /* Set your soft pastel green color */
@@ -54,6 +51,8 @@ function startPomodoro() {
         breakTimer = setInterval(() => {
             breakTime--;
             document.getElementById('timer').textContent = formatTime(breakTime);
+            document.getElementById('work-time-display').textContent = formatTime(workTime);
+            document.getElementById('break-time-display').textContent = formatTime(breakTime);
 
             if (breakTime === 0) {
                 clearInterval(breakTimer);
@@ -69,6 +68,8 @@ function startPomodoro() {
         workTimer = setInterval(() => {
             workTime--;
             document.getElementById('timer').textContent = formatTime(workTime);
+            document.getElementById('work-time-display').textContent = formatTime(workTime);
+            document.getElementById('break-time-display').textContent = formatTime(breakTime);
 
             if (workTime === 0) {
                 clearInterval(workTimer);
@@ -77,12 +78,7 @@ function startPomodoro() {
         }, 1000);
     }
 
-    // Redirect to timer.html
-    window.location.href = 'timer.html';
-
-    // Set display times dynamically
-    document.getElementById('work-time-display').textContent = formatTime(workTime);
-    document.getElementById('break-time-display').textContent = formatTime(breakTime);
+    switchToWork();
 }
 
 function formatTime(seconds) {
