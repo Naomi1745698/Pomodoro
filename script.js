@@ -48,27 +48,6 @@ function startPomodoro() {
         timerContainer.style.backgroundColor = '#D1FFD1'; /* Set your soft pastel green color */
         document.getElementById('message').textContent = 'Break Time!';
         isWorkTime = false;
-        setTimeout(startPomodoro, 1000);
-    }
-
-    function switchToWork() {
-        timerContainer.style.backgroundColor = '#FFD1D1'; /* Set your soft pastel red color */
-        document.getElementById('message').textContent = 'Work Time!';
-        isWorkTime = true;
-        setTimeout(startPomodoro, 1000);
-    }
-
-    if (isWorkTime) {
-        workTimer = setInterval(() => {
-            workTime--;
-            document.getElementById('timer').textContent = formatTime(workTime);
-
-            if (workTime === 0) {
-                clearInterval(workTimer);
-                switchToBreak();
-            }
-        }, 1000);
-    } else {
         breakTimer = setInterval(() => {
             breakTime--;
             document.getElementById('timer').textContent = formatTime(breakTime);
@@ -79,6 +58,23 @@ function startPomodoro() {
             }
         }, 1000);
     }
+
+    function switchToWork() {
+        timerContainer.style.backgroundColor = '#FFD1D1'; /* Set your soft pastel red color */
+        document.getElementById('message').textContent = 'Work Time!';
+        isWorkTime = true;
+        workTimer = setInterval(() => {
+            workTime--;
+            document.getElementById('timer').textContent = formatTime(workTime);
+
+            if (workTime === 0) {
+                clearInterval(workTimer);
+                switchToBreak();
+            }
+        }, 1000);
+    }
+
+    switchToWork();
 }
 
 function formatTime(seconds) {
