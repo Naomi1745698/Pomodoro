@@ -94,5 +94,5 @@ function formatTime(seconds) {
 function goBack() {
     clearInterval(workTimer);
     clearInterval(breakTimer);
-    window.location.href = 'settings.html';
+    window.location.href = 'index.html';
 }
