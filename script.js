@@ -39,8 +39,11 @@ function toggleDarkMode() {
 }
 
 function startPomodoro() {
-    workTime = document.getElementById('work-timer').value * 60;
-    breakTime = document.getElementById('break-timer').value * 60;
+    const workTimeValue = document.getElementById('work-timer').value;
+    const breakTimeValue = document.getElementById('break-timer').value;
+    
+    workTime = workTimeValue * 60;
+    breakTime = breakTimeValue * 60;
 
     const timerContainer = document.getElementById('timer-container');
 
