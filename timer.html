@@ -34,8 +34,10 @@
     
     <script defer src="script.js"></script>
     <script>
-        initializeTimers();
-        startPomodoro();
+        document.addEventListener('DOMContentLoaded', function () {
+            initializeTimers();
+            startPomodoro();
+        });
     </script>
 </body>
 
