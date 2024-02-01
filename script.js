@@ -19,8 +19,11 @@ document.addEventListener('DOMContentLoaded', function () {
 });
 
 function goPomo() {
-    window.location.href = 'timer.html';
+    const workTime = document.getElementById('work-timer').value;
+    const breakTime = document.getElementById('break-timer').value;
+    window.location.href = `timer.html?workTime=${workTime}&breakTime=${breakTime}`;
     startPomodoro();
+}
 }
 
 function toggleDarkMode() {
@@ -38,8 +41,10 @@ function toggleDarkMode() {
 }
 
 function startPomodoro() {
-    workTime = document.getElementById('work-timer').value * 60;
-    breakTime = document.getElementById('break-timer').value * 60;
+    // Get workTime and breakTime from URL parameters or other sources
+    const urlParams = new URLSearchParams(window.location.search);
+    workTime = urlParams.get('workTime') || 25 * 60; // Default to 25 minutes if not provided
+    breakTime = urlParams.get('breakTime') || 5 * 60; // Default to 5 minutes if not provided
 
     const timerContainer = document.getElementById('timer-container');
     const timerDisplay = document.getElementById('timer');
