@@ -9,8 +9,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (document.getElementById('settings-container')) {
         // Page 1: Settings
+        updateSliderText('work');
+        updateSliderText('break');
     } else if (document.getElementById('timer-container')) {
         // Page 2: Timer
+        initializeTimers();
         startPomodoro();
     }
 });
@@ -40,6 +43,7 @@ function startPomodoro() {
         timerContainer.style.backgroundColor = '#D1FFD1'; /* Set your soft pastel green color */
         document.getElementById('message').textContent = 'Break Time!';
         isWorkTime = false;
+        timerDisplay.textContent = formatTime(breakTime); // Display initial break time
         breakTimer = setInterval(updateBreakTime, 1000);
     }
 
@@ -60,6 +64,7 @@ function startPomodoro() {
         timerContainer.style.backgroundColor = '#FFD1D1'; /* Set your soft pastel red color */
         document.getElementById('message').textContent = 'Work Time!';
         isWorkTime = true;
+        timerDisplay.textContent = formatTime(workTime); // Display initial work time
         workTimer = setInterval(updateWorkTime, 1000);
     }
 
@@ -75,12 +80,9 @@ function startPomodoro() {
             switchToBreak();
         }
     }
-    
-    // Redirect to timer.html
-    window.location.href = 'timer.html';
 
+    switchToWork(); // Start with the initial work session
 }
-
 
 function formatTime(seconds) {
     const minutes = Math.floor(seconds / 60);
@@ -94,7 +96,6 @@ function goBack() {
     window.location.href = 'index.html';
 }
 
-
 function updateSliderText(type) {
     const slider = type === 'work' ? document.getElementById('work-timer') : document.getElementById('break-timer');
     const value = slider.value;
@@ -102,9 +103,16 @@ function updateSliderText(type) {
 
     textElement.textContent = type === 'work' ? `Work Time: ${value} minutes` : `Break Time: ${value} minutes`;
 
-    // Update timer display on settings page if on that page
+    // Update timer display on timer page if on that page
     if (document.getElementById('timer-container')) {
         document.getElementById('work-time-display').textContent = formatTime(workTime);
         document.getElementById('break-time-display').textContent = formatTime(breakTime);
     }
+}
+
+function initializeTimers() {
+    const timerDisplay = document.getElementById('timer');
+    timerDisplay.textContent = formatTime(workTime);
+    document.getElementById('work-time-display').textContent = formatTime(workTime);
+    document.getElementById('break-time-display').textContent = formatTime(breakTime);
 }
