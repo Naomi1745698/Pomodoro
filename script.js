@@ -76,8 +76,8 @@ function startPomodoro() {
         }
     }
 
-    // Initialize with the first work session
-    switchToWork();
+    // Redirect to timer.html
+    window.location.href = 'timer.html';
 }
 
 function formatTime(seconds) {
