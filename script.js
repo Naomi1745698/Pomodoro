@@ -131,7 +131,11 @@ function updateSliderText(type) {
     }
 }
 
+
 function initializeTimers() {
+    workTime = document.getElementById('work-timer').value * 60;
+    breakTime = document.getElementById('break-timer').value * 60;
+    
     const timerDisplay = document.getElementById('timer');
     timerDisplay.textContent = formatTime(workTime);
     document.getElementById('work-time-display').textContent = formatTime(workTime);
