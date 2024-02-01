@@ -1,5 +1,3 @@
-// script.js
-
 let workTimer, breakTimer;
 let darkMode = false;
 let workTime, breakTime;
