@@ -94,3 +94,18 @@ function goBack() {
     clearInterval(breakTimer);
     window.location.href = 'index.html';
 }
+
+
+function updateSliderText(type) {
+    const slider = type === 'work' ? document.getElementById('work-timer') : document.getElementById('break-timer');
+    const value = slider.value;
+    const textElement = type === 'work' ? document.getElementById('work-timer-value') : document.getElementById('break-timer-value');
+
+    textElement.textContent = type === 'work' ? `Work Time: ${value} minutes` : `Break Time: ${value} minutes`;
+
+    // Update timer display on settings page if on that page
+    if (document.getElementById('timer-container')) {
+        document.getElementById('work-time-display').textContent = formatTime(workTime);
+        document.getElementById('break-time-display').textContent = formatTime(breakTime);
+    }
+}
