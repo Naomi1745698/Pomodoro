@@ -1,3 +1,5 @@
+// script.js
+
 let workTimer, breakTimer;
 let darkMode = false;
 let workTime, breakTime;
@@ -9,20 +11,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
     if (document.getElementById('settings-container')) {
         // Page 1: Settings
-        document.getElementById('sun').style.backgroundImage = darkMode ? "url('moon.png')" : "url('sun.png')";
     } else if (document.getElementById('timer-container')) {
         // Page 2: Timer
         startPomodoro();
     }
 });
-
-function updateSliderText(type) {
-    const slider = type === 'work' ? document.getElementById('work-timer') : document.getElementById('break-timer');
-    const value = slider.value;
-    const textElement = type === 'work' ? document.getElementById('work-timer-value') : document.getElementById('break-timer-value');
-
-    textElement.textContent = type === 'work' ? `Work Time: ${value} minutes` : `Break Time: ${value} minutes`;
-}
 
 function toggleDarkMode() {
     const body = document.body;
@@ -39,45 +32,53 @@ function toggleDarkMode() {
 }
 
 function startPomodoro() {
+    workTime = document.getElementById('work-timer').value * 60;
+    breakTime = document.getElementById('break-timer').value * 60;
+
     const timerContainer = document.getElementById('timer-container');
-    
-    // Redirect to timer.html
-    window.location.href = 'timer.html';
+    const timerDisplay = document.getElementById('timer');
 
     function switchToBreak() {
         timerContainer.style.backgroundColor = '#D1FFD1'; /* Set your soft pastel green color */
         document.getElementById('message').textContent = 'Break Time!';
         isWorkTime = false;
-        breakTimer = setInterval(() => {
-            breakTime--;
-            document.getElementById('timer').textContent = formatTime(breakTime);
-            document.getElementById('work-time-display').textContent = formatTime(workTime);
-            document.getElementById('break-time-display').textContent = formatTime(breakTime);
+        breakTimer = setInterval(updateBreakTime, 1000);
+    }
 
-            if (breakTime === 0) {
-                clearInterval(breakTimer);
-                switchToWork();
-            }
-        }, 1000);
+    function updateBreakTime() {
+        breakTime--;
+        timerDisplay.textContent = formatTime(breakTime);
+
+        document.getElementById('work-time-display').textContent = formatTime(workTime);
+        document.getElementById('break-time-display').textContent = formatTime(breakTime);
+
+        if (breakTime === 0) {
+            clearInterval(breakTimer);
+            switchToWork();
+        }
     }
 
     function switchToWork() {
         timerContainer.style.backgroundColor = '#FFD1D1'; /* Set your soft pastel red color */
         document.getElementById('message').textContent = 'Work Time!';
         isWorkTime = true;
-        workTimer = setInterval(() => {
-            workTime--;
-            document.getElementById('timer').textContent = formatTime(workTime);
-            document.getElementById('work-time-display').textContent = formatTime(workTime);
-            document.getElementById('break-time-display').textContent = formatTime(breakTime);
-
-            if (workTime === 0) {
-                clearInterval(workTimer);
-                switchToBreak();
-            }
-        }, 1000);
+        workTimer = setInterval(updateWorkTime, 1000);
     }
 
+    function updateWorkTime() {
+        workTime--;
+        timerDisplay.textContent = formatTime(workTime);
+
+        document.getElementById('work-time-display').textContent = formatTime(workTime);
+        document.getElementById('break-time-display').textContent = formatTime(breakTime);
+
+        if (workTime === 0) {
+            clearInterval(workTimer);
+            switchToBreak();
+        }
+    }
+
+    // Initialize with the first work session
     switchToWork();
 }
 
